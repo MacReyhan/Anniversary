@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Anniversary Countdown</title>
+<style>
+    body {
+		background: linear-gradient(135deg, #ffe6f0, #fffde7, #e0f7fa, #ffffff);
+		background-size: 400% 400%;
+		animation: gradientShift 12s ease infinite;
+        font-family: 'Segoe UI', sans-serif;
+        color: #333;
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center; /* vertical center */
+        align-items: center;     /* horizontal center */
+    }
+	
+    h1 {
+        margin-bottom: 20px;
+        text-align: center;
+    }
+    .cards {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        align-items: center;
+    }
+    .card {
+        background: linear-gradient(145deg, #fddde6, #f8f9d2, #E0FFFF, #fddde6);
+        padding: 30px;
+        border-radius: 20px;
+        box-shadow: 0px 4px 15px rgba(0,0,0,0.1);
+        min-width: 300px;
+        text-align: center;
+    }
+    .title {
+        font-size: 1.4em;
+        font-weight: bold;
+        color: #7a3eb1;
+        margin-bottom: 15px;
+    }
+    .count {
+        font-size: 1.2em;
+        margin: 10px 0;
+        color: #444;
+    }
+    .special {
+        font-size: 1.1em;
+        margin-top: 15px;
+        font-weight: bold;
+        color: #ff4f81;
+    }
+</style>
+</head>
+<body>
+
+<h1>💖 Our Special Days 💖</h1>
+
+<div class="cards">
+    <div class="card">
+        <div class="title">OG ANNIVERSARY (26 March 2020)</div>
+        <div class="count" id="ogCount"></div>
+        <div class="special" id="ogSpecial"></div>
+    </div>
+
+    <div class="card">
+        <div class="title">MARRIAGE ANNIVERSARY (10 February 2024)</div>
+        <div class="count" id="marriageCount"></div>
+        <div class="special" id="marriageSpecial"></div>
+    </div>
+</div>
+
+<script>
+function calcAnniversary(startDate, today) {
+    let years = today.getFullYear() - startDate.getFullYear();
+    let months = today.getMonth() - startDate.getMonth();
+    let days = today.getDate() - startDate.getDate();
+
+    if (days < 0) {
+        months--;
+        let prevMonth = new Date(today.getFullYear(), today.getMonth(), 0).getDate();
+        days += prevMonth;
+    }
+    if (months < 0) {
+        years--;
+        months += 12;
+    }
+
+    return { years, months, days };
+}
+
+function updateCountdowns() {
+    const today = new Date();
+
+    // OG Anniversary
+    const ogDate = new Date(2020, 2, 26);
+    let ogDiff = calcAnniversary(ogDate, today);
+    document.getElementById('ogCount').textContent =
+        `${ogDiff.years} years, ${ogDiff.months} months, ${ogDiff.days} days since OG day 💕`;
+    
+    if (today.getDate() === 26) {
+        document.getElementById('ogSpecial').textContent =
+            `🎉 Congratulations on your ${ogDiff.years} years ${ogDiff.months} months anniversary!`;
+    }
+
+    // Marriage Anniversary
+    const marriageDate = new Date(2024, 1, 10);
+    let marriageDiff = calcAnniversary(marriageDate, today);
+    document.getElementById('marriageCount').textContent =
+        `${marriageDiff.years} years, ${marriageDiff.months} months, ${marriageDiff.days} days since marriage 💍`;
+
+    if (today.getDate() === 10) {
+        document.getElementById('marriageSpecial').textContent =
+            `💖 Congratulations on your ${marriageDiff.years} years ${marriageDiff.months} months marriage anniversary!`;
+    }
+}
+
+updateCountdowns();
+</script>
+
+</body>
+</html>
