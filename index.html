@@ -17,6 +17,14 @@
         justify-content: center; /* vertical center */
         align-items: center;     /* horizontal center */
     }
+
+	.top-right-embed {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        z-index: 10; 
+    }
 	
     h1 {
         margin-bottom: 20px;
@@ -59,6 +67,8 @@
 
 <h1>💖 Our Special Days 💖</h1>
 
+<iframe data-testid="embed-iframe" class="top-right-embed" style="border-radius:12px" src="https://open.spotify.com/embed/artist/7n2Ycct7Beij7Dj7meI4X0?utm_source=generator" width="300px" height="300px" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+	
 <div class="cards">
     <div class="card">
         <div class="title">OG ANNIVERSARY (26 March 2020)</div>
@@ -123,3 +133,4 @@ updateCountdowns();
 
 </body>
 </html>
+
